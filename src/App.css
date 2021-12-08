@@ -9,6 +9,8 @@ main{
 }
 .AppNight{
   background-image: url('assests/images/night1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .searchBox{
   width: 100%;
@@ -84,4 +86,13 @@ main{
   font-weight: 500;
   text-align: center;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}
+
+@media only screen and (min-width: 360px) and (max-width: 768px){
+  .App{
+    background-image: url('./assests/images/day.png');
+  }
+  .AppNight{
+    background-image: url('./assests/images/night.png');
+  }
 }

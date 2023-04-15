@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+}
+/* starting ENTER animation */
+.transition-enter {
+  opacity: 0;
+}
+
+/* ending ENTER animation */
+.transition-enter-active {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+/* starting EXIT animation */
+.transition-exit {
+  opacity: 1;
+}
+
+/* ending EXIT animation */
+.transition-exit-active {
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}

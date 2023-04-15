@@ -1,5 +1,14 @@
+:root{
+  --black: #000000;
+  --black-light: #00000060;
+  --blue: #4285f4;
+}
 body {
   margin: 0;
+}
+a{
+  text-decoration: none;
+  color: var(--blue);
 }
 /* starting ENTER animation */
 .transition-enter {

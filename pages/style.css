@@ -1,9 +1,9 @@
 :root {
   --blue: #4285f4;
   --white: #ffffff;
-  --white-light: #fafafa;
-  --white-darker: #dbdbdb;
+  --white-light-dark: #fafafa;
   --white-dark: #efefef;
+  --white-deep-dark: #dbdbdb;
   --black: #000000;
 }
 body {
@@ -39,9 +39,9 @@ a {
 .card {
   position: relative;
   margin: 1rem;
-  border: 1px solid var(--white-darker);
+  border: 1px solid var(--white-deep-dark);
   border-radius: 1rem;
-  background-image: linear-gradient(120deg, var(--white), var(--white-light));
+  background-image: linear-gradient(120deg, var(--white), var(--white-light-dark));
 }
 .card:hover::before{
   opacity: 1;

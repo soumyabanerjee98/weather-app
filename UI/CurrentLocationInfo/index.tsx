@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import { Data } from "@/pages/api";
 import moment from "moment";
-import { mouseMove } from "@/utilFunction";
+import {
+  formatDateTime,
+  monthName,
+  mouseMove,
+  timeFormat,
+} from "@/utilFunction";
 
 type CurrentLocationInfoProps = {
   currentLocationData: Data | null | undefined;
@@ -10,9 +15,11 @@ type CurrentLocationInfoProps = {
 
 const CurrentLocationInfo = (props: CurrentLocationInfoProps) => {
   const { currentLocationData } = props;
-  console.log(currentLocationData);
+  console.log(currentLocationData?.response);
 
   const [date, setDate] = useState(moment().format("LLLL"));
+  const localTime: string = currentLocationData?.response?.location?.localtime;
+  const formattedLocalTime = formatDateTime(localTime);
 
   setInterval(() => {
     setDate(moment().format("LLLL"));
@@ -31,7 +38,7 @@ const CurrentLocationInfo = (props: CurrentLocationInfoProps) => {
             <img
               src={currentLocationData?.response?.current?.condition?.icon}
             />
-            <div>{currentLocationData?.response?.location?.localtime}</div>
+            <div>{formattedLocalTime}</div>
             <div>{date}</div>
           </>
         ) : (

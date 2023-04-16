@@ -13,7 +13,10 @@ import History from "@/UI/History";
 
 const fetcher = async () => {
   const res = await callApi(processIDs?.getcurrentlocationweather, {});
-  return res;
+  if (res?.returnCode) {
+    return res;
+  }
+  return null;
 };
 
 export default function HomePage() {
@@ -44,7 +47,7 @@ export default function HomePage() {
               <TailSpin
                 height={50}
                 width={50}
-                color="black"
+                color="var(--black)"
                 ariaLabel="tail-spin-loading"
                 radius={1}
                 wrapperClass={styles?.loading}

@@ -10,6 +10,8 @@ type CurrentLocationInfoProps = {
 
 const CurrentLocationInfo = (props: CurrentLocationInfoProps) => {
   const { currentLocationData } = props;
+  console.log(currentLocationData);
+
   const [date, setDate] = useState(moment().format("LLLL"));
 
   setInterval(() => {

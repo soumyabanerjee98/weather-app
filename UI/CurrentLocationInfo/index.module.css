@@ -1,7 +1,4 @@
 .main{
-    margin: 1rem;
-    border-radius: 1rem;
-    background-color: var(--white-light);
     grid-area: a;
 }
 .nodata{

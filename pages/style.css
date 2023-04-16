@@ -2,7 +2,8 @@
   --blue: #4285f4;
   --white: #ffffff;
   --white-light: #fafafa;
-  --white-dark: #dbdbdb;
+  --white-darker: #dbdbdb;
+  --white-dark: #efefef;
   --black: #000000;
 }
 body {
@@ -37,13 +38,15 @@ a {
 /* card hover animation */
 .card {
   position: relative;
-  border: 1px solid var(--white-dark);
+  margin: 1rem;
+  border: 1px solid var(--white-darker);
+  border-radius: 1rem;
+  background-image: linear-gradient(120deg, var(--white), var(--white-light));
 }
-.card:hover::before, .card:hover::after {
+.card:hover::before{
   opacity: 1;
 }
-.card::before,
-.card::after {
+.card::before {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -53,28 +56,15 @@ a {
   content: "";
   border-radius: inherit;
   transition: opacity 0.5s;
-}
-.card::before {
-  background-image: radial-gradient(
-    1000px circle at var(--mouse-x) var(--mouse-y),
-    var(--white-light),
-    transparent 40%
-  );
-  z-index: 1;
-}
-.card::after {
-  background-image: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y),
-    var(--white-dark),
-    transparent 40%
-  );
-  z-index: 2;
+  background-image: radial-gradient(850px circle at var(--mouse-x) var(--mouse-y),
+        var(--white-dark),
+        transparent 40%);
+    z-index: 1;
 }
 .card > .card-content {
   position: absolute;
-  inset: 1px;
   border-radius: inherit;
   background-color: transparent;
   padding: 1rem;
-  z-index: 3;
+  z-index: 2;
 }

@@ -1,4 +1,4 @@
-import { processIDs } from "./config";
+import { processIDs, server } from "./config";
 import { Data, Request } from "./pages/api";
 
 const dotenv = require("dotenv");
@@ -20,21 +20,21 @@ const getcurrentlocationweather = async (reqData: Request["data"]) => {
   }
   const lat = ipJson?.lat;
   const lon = ipJson?.lon;
-  const currentWeather = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHERAPI}&q=${lat},${lon}&aqi=yes`
+  const currentLocWeather = await fetch(
+    `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHERAPI}&q=${lat},${lon}&days=${server?.forecastDay}&aqi=yes&alerts=yes`
   );
-  const currentWeatherJson = await currentWeather.json();
-  if (currentWeatherJson?.error) {
+  const currentLocWeatherJson = await currentLocWeather.json();
+  if (currentLocWeatherJson?.error) {
     const data: Data = {
       returnCode: false,
-      response: currentWeatherJson?.error,
+      response: currentLocWeatherJson?.error,
       message: "Something went wrong!",
     };
     return data;
   }
   const data: Data = {
     returnCode: true,
-    response: currentWeatherJson,
+    response: currentLocWeatherJson,
     message: "Data fetched successfully",
   };
   return data;

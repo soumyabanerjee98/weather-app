@@ -18,11 +18,18 @@ const CurrentLocationInfo = (props: CurrentLocationInfoProps) => {
   console.log(currentLocationData?.response);
 
   const [date, setDate] = useState(moment().format("LLLL"));
+  const [lastUpdated, setLastUpdated] = useState(
+    moment(currentLocationData?.response?.current?.last_updated).fromNow()
+  );
   const localTime: string = currentLocationData?.response?.location?.localtime;
   const formattedLocalTime = formatDateTime(localTime);
+  const currentLocation = `${currentLocationData?.response?.location?.name}, ${currentLocationData?.response?.location?.region}, ${currentLocationData?.response?.location?.country}`;
 
   setInterval(() => {
     setDate(moment().format("LLLL"));
+    setLastUpdated(
+      moment(currentLocationData?.response?.current?.last_updated).fromNow()
+    );
   }, 1000);
 
   return (
@@ -38,8 +45,10 @@ const CurrentLocationInfo = (props: CurrentLocationInfoProps) => {
             <img
               src={currentLocationData?.response?.current?.condition?.icon}
             />
-            <div>{formattedLocalTime}</div>
+            <div>Local time: {formattedLocalTime}</div>
             <div>{date}</div>
+            <div>{currentLocation}</div>
+            <div>Last updated: {lastUpdated}</div>
           </>
         ) : (
           <div className={styles?.nodata}>

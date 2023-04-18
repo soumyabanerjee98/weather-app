@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "./index.module.css";
-import { callApi } from "@/utilFunction";
+import { callApi, messageService, messageType } from "@/utilFunction";
 import { processIDs } from "@/config";
 import useSwr from "swr";
 import CurrentLocationInfo from "@/UI/CurrentLocationInfo";
@@ -10,6 +10,9 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Link from "next/link";
 import SearchSection from "@/UI/SearchSection";
 import History from "@/UI/History";
+import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import MoreInfo from "@/UI/MoreInfo";
 
 const fetcher = async () => {
   const res = await callApi(processIDs?.getcurrentlocationweather, {});
@@ -28,6 +31,18 @@ export default function HomePage() {
     refreshInterval: 60000,
     loadingTimeout: 10000,
   });
+  const [popUp, setPopUp] = useState(false);
+
+  useEffect(() => {
+    // @ts-ignore
+    messageService?.onReceive()?.subscribe((m: messageType) => {
+      if (m?.message?.action === "open-popup") {
+        setPopUp(true);
+      } else if (m?.message?.action === "close-popup") {
+        setPopUp(false);
+      }
+    });
+  }, []);
   return (
     <>
       <Head>
@@ -76,6 +91,9 @@ export default function HomePage() {
                     WeatherAPI.com
                   </Link>
                 </div>
+                <AnimatePresence initial={false} mode="popLayout">
+                  {popUp && <MoreInfo />}
+                </AnimatePresence>
               </div>
             )}
           </main>

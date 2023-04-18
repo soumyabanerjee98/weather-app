@@ -4,10 +4,12 @@ import { Data } from "@/pages/api";
 import moment from "moment";
 import {
   formatDateTime,
+  messageService,
   monthName,
   mouseMove,
   timeFormat,
 } from "@/utilFunction";
+import { motion, AnimatePresence } from "framer-motion";
 
 type CurrentLocationInfoProps = {
   currentLocationData: Data | null | undefined;
@@ -49,6 +51,19 @@ const CurrentLocationInfo = (props: CurrentLocationInfoProps) => {
             <div>{date}</div>
             <div>{currentLocation}</div>
             <div>Last updated: {lastUpdated}</div>
+            <button
+              type="button"
+              onClick={() => {
+                messageService?.sendMessage({
+                  sender: "current-location-info",
+                  // @ts-ignore
+                  message: { action: "open-popup" },
+                  target: "pop-up",
+                });
+              }}
+            >
+              Hi
+            </button>
           </>
         ) : (
           <div className={styles?.nodata}>

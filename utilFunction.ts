@@ -1,5 +1,29 @@
 import { server } from "./config";
 import { Data, Request } from "./pages/api";
+import { Subject } from "rxjs";
+
+const subject = new Subject();
+type messageParams = {
+  source: string;
+  action: string;
+  params: object | any[] | any | undefined;
+};
+export type messageType = {
+  sender: string;
+  message: messageParams;
+  target: string
+}
+
+export const messageService = {
+  sendMessage: (message: messageType) =>
+    subject.next({
+      sender: message?.sender,
+      message: message?.message,
+      target: message?.target,
+    }),
+  onReceive: () => subject.asObservable(),
+  clearMessage: () => subject.next({}),
+};
 
 export const callApi = async (
   processId: Request["processId"],

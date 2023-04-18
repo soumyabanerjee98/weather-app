@@ -42,6 +42,7 @@ a {
   border: 1px solid var(--white-deep-dark);
   border-radius: 1rem;
   background-image: linear-gradient(120deg, var(--white), var(--white-light-dark));
+  font-size: 12px;
 }
 .card:hover::before{
   opacity: 1;

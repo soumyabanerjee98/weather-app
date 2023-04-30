@@ -1,5 +1,6 @@
 :root {
   --blue: #4285f4;
+  --blue-hover: #75a7f7;
   --white: #ffffff;
   --white-light-dark: #fafafa;
   --white-dark: #efefef;
@@ -64,6 +65,8 @@ a {
     z-index: 1;
 }
 .card > .card-content {
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
   position: absolute;
   border-radius: inherit;
   background-color: transparent;

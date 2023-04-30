@@ -8,3 +8,44 @@
     justify-content: center;
     align-items: center;
 }
+.data{
+    position: relative;
+    height: 100%;
+}
+.allinfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.weathercondition{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.temp{
+    font-size: 20px;
+}
+.feel_temp{
+    opacity: 0.8;
+    font-size: 12px;
+}
+.condition{
+    font-size: 16px;
+    opacity: 0.8;
+}
+.localinfo{
+    font-size: 14px;
+}
+.last_updated{
+    margin-top: 0.2rem;
+    font-style: italic;
+    opacity: 0.6;
+}
+.more{
+    color: var(--blue);
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-style: italic;
+}

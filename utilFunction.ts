@@ -1,4 +1,3 @@
-import { server } from "./config";
 import { Data, Request } from "./pages/api";
 import { Subject } from "rxjs";
 
@@ -33,9 +32,7 @@ export const callApi = async (
     processId: processId,
     data: reqdata,
   };
-  const url =
-    process.env.NODE_ENV === "production" ? server?.live : server?.test;
-  const data = await fetch(url, {
+  const data = await fetch('/api', {
     method: "POST",
     body: JSON.stringify(body),
     headers: {
